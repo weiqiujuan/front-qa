@@ -1,0 +1,38 @@
+/*每一行列数不固定
+使用足够的空白标签进行填充占位，具体的占位数量是由最多列数的个数决定的，
+例如这个布局最多7列，那我们可以使用7个空白标签进行填充占位，
+最多10列，那我们需要使用10个空白标签。*/
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-right: -10px;
+}
+
+.list {
+    width: 100px;
+    height: 100px;
+    background-color: skyblue;
+    margin: 15px 10px 0 0;
+}
+
+/* 和列表一样的宽度和margin值 */
+.container > i {
+    width: 100px;
+    margin-right: 10px;
+}
+
+/*如果列数不固定HTML又不能调整，
+Grid布局天然有gap间隙，且天然格子对齐排布，
+因此，实现最后一行左对齐可以认为是天生的效果。*/
+.container1 {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-gap: 10px;
+}
+.list1 {
+    width: 100px; height:100px;
+    background-color: skyblue;
+    margin-top: 5px;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>justify-content</title>
+    <style>
+        /*.container {
+            display: flex;
+            !*justify-content: space-between;*!
+            flex-wrap: wrap;
+        }
+
+        .list {
+            width: 24%;
+            height: 100px;
+            background: skyblue;
+            margin-top: 15px;
+        }
+
+        .list:not(:nth-child(4n)) {
+            margin-right: calc(4% / 3);
+        }*/
+        .container {
+            display: flex;
+            /* 两端对齐 */
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .list {
+            width: 24%; height: 100px;
+            background-color: skyblue;
+            margin-top: 15px;
+        }
+
+        /* 如果最后一行是3个元素 */
+        .list:last-child:nth-child(4n - 1) {
+            margin-right: calc(24% + 4% / 3);
+        }
+        /* 如果最后一行是2个元素 */
+        .list:last-child:nth-child(4n - 2) {
+            margin-right: calc(48% + 8% / 3);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="list"></div>
+    <div class="list"></div>
+    <div class="list"></div>
+    <div class="list"></div>
+    <div class="list"></div>
+    <div class="list"></div>
+    <div class="list"></div>
+</div>
+
+</body>
+</html>

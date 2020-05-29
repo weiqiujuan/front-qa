@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Object.defineProperty 监听对象属性变化</title>
+</head>
+<body>
+<div>
+</div>
+<script type="text/javascript">
+    let obj = {}
+    let value = ''
+    Object.defineProperty(obj, 'name', {
+        get: () => {
+            return value
+        },
+        set: (newVal) => {
+            console.log('检测到变化', newVal);
+            value = newVal;
+        }
+    })
+    console.log(obj.name, ' 1')
+    obj.name = 'mfg'
+    console.log(obj.name, ' 2')
+</script>
+</body>
+
+</html>
