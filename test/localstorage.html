@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>localStorage</title>
+</head>
+<body>
+localstorage测试
+</body>
+<script>
+    function localStorageTest(data){
+        if(window.localStorage){
+            localStorage.setItem('HfTabOffline',data)
+            //console.log('This browser supports localStorage')
+            const flag=localStorage.getItem('HfTabOffline')
+            console.log(flag,typeof flag)
+        }else{
+            console.log('This browser does NOT support localStorage')
+        }
+    }
+    localStorageTest(0)
+</script>
+</html>
