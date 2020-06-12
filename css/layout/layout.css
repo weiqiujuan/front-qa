@@ -1,0 +1,62 @@
+.left, .right{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+}
+.main{
+    height: 100px;
+    background-color: green;
+}
+/*自身浮动*/
+.self-float .left{
+    float: left;
+}
+.self-float .right{
+    float: right;
+}
+.self-float .main{
+    margin: 0 100px;
+}
+
+/*绝对定位*/
+.absolute-pos {
+    position: relative;
+}
+.absolute-pos .left{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.absolute-pos .right{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.absolute-pos .main{
+    margin: 0 100px;
+}
+/*margin负值*/
+.margin-negative .main{
+    width: 100%;
+    float: left;
+}
+.margin-negative .main .content {
+    margin: 0 100px;
+}
+.margin-negative .left {
+    float: left;
+    margin-left: -100%;
+}
+.margin-negative .right {
+    float: left;
+    margin-left: -100px;
+}
+/*flex布局*/
+.flex-container{
+    display: -webkit-flex;
+    display: flex;
+}
+.flex-container .main{
+    -webkit-flex: 1;
+    flex: 1;
+}

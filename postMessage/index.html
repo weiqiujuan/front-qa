@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<h1>我是index页面</h1>
+<iframe src="./iframePage.html" id="myiframe" frameborder="0"></iframe>
+<script>
+    let iframe = document.getElementById('myiframe')
+    iframe.onload = function () {
+        iframe.contentWindow.postMessage('MessageFromIndex1,index页面信息','*');
+
+
+        //iframe加载完再延迟1000ms发送一条消息
+        setTimeout(()=>{
+            iframe.contentWindow.postMessage('MessageFromIndex2，index信息2','*');
+        },1000)
+
+        //回调函数
+        function receiveMessageFromIframePage (event) {
+            console.log('receiveMessageFromIframePage', event)
+        }
+
+        //监听message事件
+        window.addEventListener("message", receiveMessageFromIframePage, false);
+    }
+</script>
+</body>
+</html>

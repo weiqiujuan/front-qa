@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iframePage</title>
+    <style type="text/css">
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>我是iframe页面</h1>
+<script>
+    parent.postMessage({
+        msg: '我是iframe页面发来的信息'
+    },'*')
+
+    function receiveMessage( event ) {
+        console.log('这是从index传过来的', event)
+    }
+
+    window.addEventListener('message', receiveMessage, false)
+</script>
+</body>
+</html>

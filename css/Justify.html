@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Justify</title>
+    <style type="text/css">
+        .body {
+             /*flex 使用*/
+            display: flex;
+            justify-content: space-between;
+        }
+        .body4{
+            /* 内联元素*/
+            text-align: justify;
+        }
+        .body4:after{
+            /* 内联元素*/
+            /* text-align-last:justify只有IE支持，标准浏览器需要使用 .demo:after 伪类模拟类似效果 */
+            display:inline-block;
+            overflow:hidden;
+            width:100%;
+            height:0;
+            content:'';
+            vertical-align:top;/* opera浏览器解决底部多余的空白 */
+        }
+        .area4 {
+            width: 100px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            /* 内联元素*/
+            display: inline-block;
+        }
+
+        .body1{
+            /* column 方式 */
+            column-count: 2;
+            column-gap: 79%;
+        }
+
+        .area {
+            width: 100px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .left {
+            background: aliceblue;
+        }
+
+        .right {
+            background: aquamarine;
+        }
+
+        .text{
+            text-align:justify;
+            text-justify:distribute-all-lines;/*ie6-8*/
+            text-align-last:justify;/* ie9*/
+            -moz-text-align-last:justify;/*ff*/
+            -webkit-text-align-last:justify;/*chrome 20+*/
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="body">
+    <div class="left area">left</div>
+    <div class="right area">right</div>
+</div>
+<div class="body1">
+    <div class="left area">left1</div>
+    <div class="right area">right1</div>
+</div>
+<div class="body4">
+    <div class="left area4">left4</div>
+    <div class="right area4">right4</div>
+</div>
+
+<div class="text-justify">
+    <div class="text">我想要两端对齐</div>
+</div>
+
+</body>
+</html>
