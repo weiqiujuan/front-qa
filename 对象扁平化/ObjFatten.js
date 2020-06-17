@@ -11,3 +11,12 @@ function objPatten(obj) {
 }
 var obj = { cost: 12345, insertBy: 'testUser' }
 console.log(objPatten(obj))
+
+/* 对象的扁平化 */
+function deepClone(arr) {
+    let res = (arr instanceof Array) ? [] : {}
+    for (let i in arr) {
+        res[i] = (typeof arr[i] === 'object') ? deepClone(arr[i]) : arr[i]
+    }
+    return res
+}
