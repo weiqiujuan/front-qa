@@ -1,0 +1,208 @@
+.container {
+    width: 200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.container > div {
+    margin: 40px auto;
+}
+
+.triangle {
+    height: 0;
+    width: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid coral;
+}
+
+.notching {
+    width: 40px;
+    height: 40px;
+    padding: 40px;
+    background: linear-gradient(135deg, transparent 15px, yellowgreen 0) top left,
+    linear-gradient(-135deg, transparent 15px, yellowgreen 0) top right,
+    linear-gradient(-45deg, transparent 15px, yellowgreen 0) bottom right,
+    linear-gradient(45deg, transparent 15px, yellowgreen 0) bottom left;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.trapezoid {
+    width: 60px;
+    position: relative;
+    border-top: 60px solid coral;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+}
+
+.pentagon {
+    position: relative;
+    width: 60px;
+    border-bottom: 60px solid coral;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    margin-bottom: 10px;
+}
+
+.pentagon::after {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: -40px;
+    border-top: 60px solid coral;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+}
+
+.hexagon {
+    position: relative;
+    width: 60px;
+    border-bottom: 60px solid coral;
+    border-right: 30px solid transparent;
+    border-left: 30px solid transparent;
+}
+
+.hexagon::after {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: -30px;
+    width: 60px;
+    border-top: 60px solid coral;
+    border-right: 30px solid transparent;
+    border-left: 30px solid transparent;
+}
+
+.octagon {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border: 1px solid coral;
+    background: coral;
+}
+
+.octagon::before {
+    content: "";
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 100px;
+    border-left: 30px solid coral;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
+
+.octagon::after {
+    content: "";
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: -30px;
+    border-right: 30px solid coral;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
+
+.star {
+    margin: 50px 0;
+    position: relative;
+    width: 0;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid yellowgreen;
+    border-left: 100px solid transparent;
+    transform: rotate(35deg) scale(.6);
+}
+
+.star:before {
+    content: '';
+    position: absolute;
+    border-bottom: 80px solid yellowgreen;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    top: -45px;
+    left: -65px;
+    transform: rotate(-35deg);
+}
+
+.star:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: -105px;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid yellowgreen;
+    border-left: 100px solid transparent;
+    transform: rotate(-70deg);
+}
+
+.sixstar {
+    position: relative;
+    height: 0;
+    width: 0;
+    border-right: 50px solid transparent;
+    border-left: 50px solid transparent;
+    border-top: 100px solid coral;
+}
+
+.sixstar::before {
+    position: absolute;
+    content: '';
+    height: 0;
+    width: 0;
+    top: -125px;
+    left: -50px;
+    border-right: 50px solid transparent;
+    border-left: 50px solid transparent;
+    border-bottom: 100px solid coral;
+}
+
+.eightstar {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    background: chartreuse;
+}
+
+.eightstar::before {
+    content: '';
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: chartreuse;
+    transform: rotate(45deg);
+}
+
+.twelvestar {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    background: chartreuse;
+}
+
+.twelvestar::after {
+    content: '';
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: chartreuse;
+    transform: rotate(30deg);
+}
+
+.twelvestar::before {
+    content: '';
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: chartreuse;
+    transform: rotate(60deg);
+}
+
+.ellipse {
+    width: 120px;
+    height: 160px;
+    background-color: yellowgreen;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+

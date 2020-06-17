@@ -35,6 +35,27 @@
 .absolute-pos .main{
     margin: 0 100px;
 }
+/* 圣杯布局 */
+.holyGrail-pos{
+    padding: 0 100px;
+}
+.holyGrail-pos .main{
+    width: 100%;
+    float: left;
+}
+.holyGrail-pos .left{
+    float: left;
+    margin-left: -100%;
+    position: relative;
+    right: 100px;
+}
+.holyGrail-pos .right{
+    float: left;
+    margin-left: -100px;
+    position: relative;
+    left: 100px;
+}
+
 /*margin负值*/
 .margin-negative .main{
     width: 100%;
