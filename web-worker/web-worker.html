@@ -5,7 +5,7 @@
     <title>MDN Example - Queryable worker</title>
     <script type="text/javascript">
         function QueryableWorker(sURL, fDefListener, fOnError) {
-            var oInstance = this, oWorker = new Worker(sURL), oListeners = {};
+            const oInstance = this, oWorker = new Worker(sURL), oListeners = {};
             this.defaultListener = fDefListener || function () {
             };
             oWorker.onmessage = function (oEvent) {

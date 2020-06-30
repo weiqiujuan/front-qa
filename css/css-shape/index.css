@@ -11,8 +11,8 @@
 .triangle {
     height: 0;
     width: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
+    border-left: 57px solid transparent;
+    border-right: 57px solid transparent;
     border-bottom: 100px solid coral;
 }
 

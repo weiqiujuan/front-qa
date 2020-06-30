@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 解决第三方图片的防盗链 -->
+    <!--    <meta name="referrer" content="never">-->
+    <title>jsonp百度下拉框</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            margin-left: 10px;
+            transition: all 1s ease;
+        }
+
+        input {
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            background: #4caf50a6;
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            padding-left: 15px;
+            color: white;
+            font-size: 20px;
+        }
+
+        li {
+            cursor: pointer;
+            transition: all 1s ease;
+            list-style: none;
+            width: 280px;
+            height: 30px;
+            line-height: 30px;
+            background: #8acb8da8;
+            color: #888e4a;
+            padding-left: 10px;
+        }
+
+        li:hover {
+            background: #64a968;
+            color: #caf1cc;
+        }
+
+        input::-webkit-input-placeholder {
+            color: white;
+        }
+
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: white;
+        }
+
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: white;
+        }
+
+        input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<label>
+    <input type="text" id="user-input">
+</label>
+<ul id="ul">
+</ul>
+<img src="https://user-gold-cdn.xitu.io/2020/6/30/173031858f1bee58?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+     alt="">
+<script>
+    var obj = document.querySelector('#user-input');
+    var body = document.querySelectorAll('body')[0];
+    var ul = document.querySelector('#ul');
+    var data = ['https://user-gold-cdn.xitu.io/2020/6/30/17302c2a0cdab0f2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1',
+        'https://user-gold-cdn.xitu.io/2020/6/30/173031858f1bee58?imageView2/0/w/1280/h/960/format/webp/ignore-error/1',
+        'https://user-gold-cdn.xitu.io/2020/6/30/1730337f2290f421?imageView2/0/w/1280/h/960/format/webp/ignore-error/1'];
+
+    function render(data) {
+        //删除前一次请求的li的内容
+        if (ul.innerHTML !== '') {
+            ul.innerHTML = '';
+        }
+        const res = data.s
+        for (let i = 0, length1 = res.length; i < length1; i++) {
+            const li = document.createElement('li');
+            li.innerHTML = res[i];
+            ul.appendChild(li);
+        }
+    }
+
+    function imgFun(url) {
+        let img = new Image();
+        img.src = url
+        img.referrerPolicy = 'no-referrer'
+        if (img.complete) {
+            img = null
+        }
+    }
+
+    obj.addEventListener('keyup', function () {
+        if (document.querySelector('#request')) {
+            body.removeChild(document.querySelector('#request'));
+        }
+        const script = document.createElement('script');
+        script.id = "request";
+        script.src = "http://unionsug.baidu.com/su?wd=" + encodeURI(obj.value.trim()) + '&p=3&cb=render';
+        body.appendChild(script);
+
+        // img 跨域访问
+        data && data.forEach(item => {
+            imgFun(item)
+        })
+    });
+    //利用冒泡添加事件。
+    ul.addEventListener('click', function (e) {
+        var e = e || window.event;
+        window.location.href = "https://www.baidu.com/s?word=" + encodeURI(e.target.innerHTML);
+    });
+</script>
+</body>
+</html>
