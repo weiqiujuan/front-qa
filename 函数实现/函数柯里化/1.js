@@ -1,5 +1,5 @@
 const curry = function (fn) {
-  const args = [].slice.call(arguments, 1);
+  const args = [].slice.call(arguments, 1);// 参数
   return function () {
     let newArgs = args.concat([].slice.call(arguments));
     return fn.apply(this, newArgs);

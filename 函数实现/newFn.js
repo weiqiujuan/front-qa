@@ -1,13 +1,9 @@
 function newFun() {
-    let obj = {},// 创建一个空对象
-        // 将参数转换为数组对象,shift出第一项，即函数person
-        Constructor = [].shift.call(arguments);
-    // 将函数的原型指向obj的私有原型
-    obj.__proto__ = Constructor.prototype;
-    // 改变obj的this指向Constructor;
-    let ret = Constructor.apply(obj, arguments);
-    // 返回obj对象
-    return typeof ret === 'object' ? ret : obj;
+    const obj = {}, // 从Object.prototype 上克隆一个空的对象
+        Constructor = [].shift.call(arguments); // 取得外部传入的构造器，此例是Person
+    obj.__proto__ = Constructor.prototype; // 指向正确的原型:某个对象的__proto__属性默认会指向它的构造器的原型对象
+    const ret = Constructor.apply(obj, arguments); // 借用外部传入的构造器给obj 设置属性
+    return typeof ret === 'object' ? ret : obj; // 确保构造器总是会返回一个对象
 }
 
 let persons = newFun(person, 'weiqiujuan', '18');
