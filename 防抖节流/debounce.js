@@ -14,3 +14,13 @@ function sayHi() {
 
 var inp = document.getElementById('inp');
 inp.addEventListener('input', debounce(sayHi)); // 防抖
+
+function debounce(fn, time) {
+    let timer = null;
+    return function () {
+        if (timer) clearInterval(timer)
+        timer = setTimeout(function () {
+            fn.apply(this, arguments)
+        }, timer)
+    }
+}

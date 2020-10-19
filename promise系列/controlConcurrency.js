@@ -7,14 +7,14 @@
 const controlConcurrency = (listArr ,limit, asyncHandle) => {
     let listCopy = [].concat(listArr);// 需发送请求copy,防止变量污染
     let asyncList = [];// // 正在进行的所有并发异步操作
+    while (limit--) {
+        asyncList.push(recursion(listCopy))
+    }
     const recursion = (listArr) => {
         return asyncHandle(listArr.shift()).then(() => {
             if (listArr.length !== 0) return recursion(listArr)
             else return 'finish'
         })
-    }
-    while (limit--) {
-        asyncList.push(recursion(listCopy))
     }
     return Promise.all(asyncList) // 所有并发异步操作都完成后，本次并发控制迭代完成
 }
@@ -24,9 +24,9 @@ const controlConcurrency = (listArr ,limit, asyncHandle) => {
  */
 const asyncHandle = (item) => {
     return new Promise((resolve, reject) => {
-        count++
+        count++;
         setTimeout(() => {
-            console.log(item, '当前并发量', count--)
+            console.log(item, '当前并发量', count--);
             // if (item > 4) reject('error happen')
             resolve()
         }, Math.random() * 2000)

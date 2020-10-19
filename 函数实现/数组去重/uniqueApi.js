@@ -35,20 +35,22 @@ function uniqueObj(arr) {
 function uniqueSet1(arr) {
     return Array.from(new Set(arr))
 }
+
 // 简化
 const uniqueSet2 = (a) => [...new Set(a)]
 
 // 使用map
-function uniqueMap (arr) {
+function uniqueMap(arr) {
     const seen = new Map()
     return arr.filter((a) => !seen.has(a) && seen.set(a, 1))
 }
+
 const array1 = [1, 2, '1', 2, 1];
 const array2 = [1, 1, '1', 2, 2];
 const array = [{value: 1}, {value: 1}, {value: 2}];
-console.log(uniqueApi(array1)); // [1, 2, "1"]
-console.log(unique(array2))
+// console.log(uniqueApi(array1)); // [1, 2, "1"]
+// console.log(unique(array2))
 console.log(uniqueObj(array))
-console.log(uniqueSet2(array2))
-console.log(uniqueMap(array2))
-console.log(uniqueApi(array2, true)); // [1, "1", 2]
+// console.log(uniqueSet2(array2))
+// console.log(uniqueMap(array2))
+// console.log(uniqueApi(array2, true)); // [1, "1", 2]

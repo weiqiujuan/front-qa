@@ -19,7 +19,7 @@ let event = {
     remove: function (key, fn) {
         var fns = this.clientList[key];
         if (!fns) return false // 如果key对应的消息队列没有被人订阅，则直接返回
-        if (!fn) {//如果没有传入具体的回调函数，表示徐奥取消key对应消息的所有订阅
+        if (!fn) {//如果没有传入具体的回调函数，表示取消key对应消息的所有订阅
             fns && (fns.length = 0)
         } else {
             for (let l = fns.length - 1; l > 0; l--) {

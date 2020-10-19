@@ -12,7 +12,6 @@
     iframe.onload = function () {
         iframe.contentWindow.postMessage('MessageFromIndex1,index页面信息','*');
 
-
         //iframe加载完再延迟1000ms发送一条消息
         setTimeout(()=>{
             iframe.contentWindow.postMessage('MessageFromIndex2，index信息2','*');

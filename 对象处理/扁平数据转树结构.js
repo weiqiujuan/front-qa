@@ -9,6 +9,7 @@ function buildTree(list) {
     for (let i in list) {
         temp[list[i].id] = list[i];
     }
+    console.log(temp)
     for (let i in temp) {
         if (temp[i].parent_id) {
             if (!temp[i].parent_id.children) {
@@ -20,7 +21,6 @@ function buildTree(list) {
         }
 
     }
-    console.log(tree)
     return tree;
 }
 

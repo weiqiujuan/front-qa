@@ -64,37 +64,105 @@
 // a[c]='c'
 // console.log(a)
 
-function Foo() {
-    Foo.a = function () {
-        console.log(1)
+// function Foo() {
+//     Foo.a = function () {
+//         console.log(1)
+//     }
+//     this.a = function () {
+//         console.log(2)
+//     }
+// }
+//
+// Foo.prototype.a = function () {
+//     console.log(3)
+// }
+// Foo.a = function () {
+//     console.log(4)
+// }
+// Foo.a();// 4
+// let obj = new Foo();
+// obj.a(); // 2
+// Foo.a(); // 1
+
+
+// 统计字符串”aaaabbbbbbbbbbbbbbbbbbbbbccccddfgh”中字母个数或统计出现次数最多字母数
+// const countString = (str) => {
+//     let obj = {}, l = str.length, max = 0, count = 0,maxStr;
+//     for (let i = 0; i < l; i++) {
+//         if (obj[str[i]]) {
+//             obj[str[i]]++
+//         } else {
+//             obj[str[i]] = 1
+//         }
+//     }
+//     for (let item in obj) {
+//         count++
+//         if (max < obj[item]) {
+//             max = obj[item]
+//             maxStr = item;
+//         }
+//         // max = Math.max(max, obj[item])
+//     }
+//     console.log(max,maxStr, count)
+//     return {max, count}
+// }
+// countString('aaaabbbbbbbbbbbbbbccccddfgh')
+
+
+// const dataTree = (data) => {
+//     let obj = {}
+//     let res = {}
+//     for (let i = 0; i < data.length; i++) {
+//         obj[data[i].id] = data[i];
+//     }
+//     for (let i in obj){
+//         if (obj[i].pid!==parseInt(-1)) {
+//             if (!obj[i].pid.children) {
+//                 obj[obj[i].pid].children = {};
+//             }
+//             obj[obj[i].pid].children[obj[i].id] = obj[i]
+//         }else{
+//             res[obj[i].id] = obj[i]
+//         }
+//     }
+//     return res
+// }
+// let list = [
+//     {'id':101,'name':'语文','pid': -1},
+//     {'id':102,'name':'语文知识点1','pid': 101},
+//     {'id':103,'name':'语文知识点11','pid': 102},
+//     {'id':104,'name':'语文知识点2','pid': 101},
+//     {'id':202,'name':'数学知识点1','pid': 201},
+//     {'id':201,'name':'数学','pid': -1},
+//     {'id':203,'name':'数学知识点2','pid': 201},
+//     {'id':204,'name':'数学知识点3','pid': 201},
+// ]
+// console.log(dataTree(list))
+
+
+function findPrimeNumber(start, end) {
+    var result = [];
+    var flag;
+    for (var i = start; i < end + 1; i++) {
+        flag = true;
+        if (i === 1) {
+            flag = false;
+        }
+        for (var j = 2; j < i; j++) {
+            if (i % j === 0) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag == true) {
+            result.push(i);
+        }
     }
-    this.a = function () {
-        console.log(2)
-    }
+    return result;
 }
 
-Foo.prototype.a = function () {
-    console.log(3)
-}
-Foo.a = function () {
-    console.log(4)
-}
-Foo.a();// 4
-let obj = new Foo();
-obj.a(); // 2
-Foo.a(); // 1
-
-
-
-
-
-
-
-
-
-
-
-
+var result = findPrimeNumber(1, 100);
+console.log(...result)
 
 
 

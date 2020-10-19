@@ -2,7 +2,6 @@ let classType = {}
 "Boolean Number String Function Array Date RegExp Object Error Null Undefined".split(" ").map(function (item, index) {
     classType["[object " + item + "]"] = item.toLowerCase();
 })
-console.log(classType)
 const typeApi = (obj) => {
     if (obj === null) {
         return obj + ''
@@ -13,14 +12,16 @@ const typeApi = (obj) => {
 }
 console.log(typeApi(undefined))
 
+
 //isFunction
 const isFunction = (obj) => {
     return typeApi(obj) === "function"
 }
-console.log(isFunction(function () {}))
+console.log(isFunction(function () {
+}))
 
 //isArray
 const isArray = Array.isArray || function (obj) {
     return type(obj) === "array";
 };
-console.log(isArray([1,2,3,4]))
+console.log(isArray([1, 2, 3, 4]))

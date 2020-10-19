@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="buttonOne" onclick="main()">one</button>
+<button class="buttonTwo" onclick="main()">two</button>
+</body>
+<script>
+    function postOne(postDone) {
+        return new Promise((reject, resolve) => {
+            if (!postDone) {
+                reject('postTwo error')
+            } else {
+                resolve(() => {
+                    postDone = false;
+                    setTimeout(() => {
+                        console.log('postOne')
+                    }, 1000)
+                })
+            }
+        }).then((res) => {
+            console.log(res)
+            postDone = true
+        })
+    }
+
+    function postTwo(postDone) {
+        return new Promise((reject, resolve) => {
+            if (!postDone) {
+                reject('postOne error')
+            } else {
+                postDone = false;
+                setTimeout(() => {
+                    console.log('postTwo')
+                }, 2000)
+            }
+        }).then((res) => {
+            console.log(res)
+            postDone = true
+        })
+    }
+
+    function main() {
+        let postDone = true;
+        let one = document.getElementsByClassName('buttonOne')[0]
+        let two = document.getElementsByClassName('buttonTwo')[0]
+        one.addEventListener('click', postOne(postDone))
+        two.addEventListener('click', postTwo(postDone))
+    }
+</script>
+</html>
