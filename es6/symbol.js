@@ -25,7 +25,7 @@ const s2 = Symbol.for('song');
 console.log(s1 === s2);
 
 // 可以去对原生js的操作进行修改，说白了就是可以更改原生js的行为
-// 重写instanceof默认行为（Symbol.hasInstance
+// 重写instanceof默认行为Symbol.hasInstance
 const instance = {
     [Symbol.hasInstance](value) {
         return 'a' in value

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+    <script src="https://cdn.bootcss.com/socket.io/2.0.4/socket.io.slim.js"></script>
+    <script src="server.js"></script>
+</head>
+
+<body>
+<div id="message"></div>
+<div id="thenews">news...</div>
+<div>当前在线人数
+    <span id="count">0</span>
+</div>
+<input type="text" id="input">
+<ol id="msg"></ol>
+<script>
+    let chat = io.connect('http://localhost:8080/chat')
+    let news = io.connect('http://localhost:8080/news')
+    let broadcast = io.connect('http://localhost:8080')
+
+    let input = document.getElementById('input')
+    let msg = document.getElementById('msg')
+    let thenews = document.getElementById('thenews')
+    let message = document.getElementById('message')
+
+    // broadcast
+    broadcast.on('user connected', () => {
+        message.innerHTML = 'new user'
+        setTimeout(() => {
+            message.innerHTML = ''
+        }, 2000);
+    })
+    broadcast.send('hi') // send(emit) message(listener)
+
+    // usercount
+    chat.on('usercount', (data) => {
+        document.getElementById('count').innerHTML = data.msg
+    })
+    // send message
+    input.addEventListener('change', (e) => {
+        let list = document.createElement('li')
+        list.innerHTML = 'me: ' + e.target.value
+        msg.appendChild(list)
+        chat.emit('messagetoserver', {msg: e.target.value}, (callbackdata) => {
+            e.target.value = ''
+            list.innerHTML += ' -> ' + callbackdata
+        })
+    })
+    // get message
+    chat.on('messagetoclient', (data) => {
+        let list = document.createElement('li')
+        list.innerHTML = data.username + ': ' + data.msg
+        msg.appendChild(list)
+        list = null
+    })
+
+    // ...
+    news.on('news', (data) => {
+        thenews.innerHTML = data.msg
+    })
+</script>
+</body>
+
+</html>

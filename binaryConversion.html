@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Binary conversion</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -150px 0 0 -150px;
+        }
+
+        .inputValue {
+            display: block;
+            margin: 0 auto 5px;
+            width: 300px;
+            height: 30px;
+            background-color: #00CCCC;
+            border: solid #00CCCC 1px;
+            color: #ffffff;
+            box-shadow: gray;
+        }
+
+        .buttonSection {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-content: flex-start;
+
+        }
+
+        .changeButton {
+            font-size: 12px;
+            color: white;
+            background-color: #7A88FF;
+            border: solid #7A88FF 1px;
+            padding: 3px;
+            margin: 2px 5px;
+            flex: 0 0 40%;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <input type="text" class="inputValue" placeholder="0">
+    <div class="buttonSection">
+        <button class="changeButton" id="two">转换为二进制</button>
+        <button class="changeButton" id="ten">转换为十进制</button>
+        <button class="changeButton" id="eight">转换为八进制</button>
+        <button class="changeButton" id="sixty">转换为十六进制</button>
+    </div>
+</div>
+
+</body>
+<script>
+		let $input = document.getElementsByClassName('inputValue')[0];
+		let res = ['two', 'ten', 'sixty', 'eight'];
+
+		function isType(str) {
+				if (str.startsWith('0o') || str.startsWith('0O')) {
+						return 'eight';
+				} else if (str.startsWith('0x') || str.startsWith('0x')) {
+						return 'sixty';
+				} else if (str.startsWith('0b') || str.startsWith('0B')) {
+						return 'two';
+				} else if (str.startsWith('Error')) {
+						return null;
+				} else {
+						return 'ten'
+				}
+				// if ((/^[01]+$/).test(str)) {
+				// 		return 'two';
+				// } else if ((/^(0o0)?[0-7]+$/).test(str)) {
+				// 		return 'eight';
+				// } else if ((/^[0-9]+$/).test(str)) {
+				// 		return 'ten';
+				// } else if ((/^(0x)?[0-9a-fA-F]+$/).test(str)) {
+				// 		return 'sixty';
+				// } else {
+				// 		return null;
+				// }
+		}
+
+		window.addEventListener('click', e => {
+				if (!res.includes(e.target.id)) {
+						return;
+				}
+				let value = changeStr(e.target.id);
+				// if (value.startsWith('Error')) {
+				// 		alert('请核对需转换的数')
+				// } else {
+				// 		$input.value = value
+				// }
+				$input.value = value
+		}, false)
+
+
+		function changeStr(str) {
+				let inputValue = $input.value;
+				let inputStr = isType(inputValue);
+				if (inputStr === '' || null) {
+						return new Error('请输入需要转换的字符')
+				}
+				if (inputStr === str) {
+						return new Error('请确定当前需转换的进制')
+				}
+				let funName = inputStr + 'To' + str.toLowerCase();
+				return window[funName](inputValue);
+		}
+
+		function twoToten(str) {
+				return parseInt(str, 2)
+		}
+
+		function tenToeight(str) {
+				return parseInt(str, 8)
+		}
+
+		function tenTosixty(number) {
+				let letters = ['A', 'B', 'C', 'D', 'E', 'F'],
+						intNumber = parseInt(number / 16),
+						yu = number % 16, resYu = '';
+				resYu = yu !== 0 ? letters[yu + 1] : '';
+				console.log(intNumber + resYu)
+				return parseInt(number).toString(16)
+		}
+
+		function sixtyToten(str) {
+				return parseInt(str, 16)
+		}
+
+		function tenTotwo(number) {
+				return parseInt(number).toString(2)
+		}
+</script>
+</html>

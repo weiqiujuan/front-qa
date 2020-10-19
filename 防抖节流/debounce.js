@@ -1,17 +1,32 @@
-function debounce(fn) {
-    let time = null; //创建一个计时器
-    return function() {
-        clearTimeout(time) //当用户在时间内再次点击时，清除time
-        time = setTimeout(() => { //重新计时
-            fn.apply(this, arguments)
-        }, 500)
-    }
+function debounce(method, wait) {
+		let timeout
+		// args为返回函数调用时传入的参数，传给method
+		return function (...args) {
+				let context = this
+				if (timeout) {
+						clearTimeout(timeout)
+				}
+				timeout = setTimeout(() => {
+						return method.apply(context, args)
+				}, wait)
+		}
 }
 
-function sayHi() {
-    console.log('防抖成功');
+
+function sayHi(id) {
+		let result;
+		return new Promise((resolve, reject) => {
+				result = 3 + id
+				console.log('11111', result)
+		}).catch(err => {
+				console.log('出错了', id)
+		}).then(() => {
+				result = 5 + id
+				console.log('then', result)
+		})
 }
 
+<<<<<<< HEAD
 var inp = document.getElementById('inp');
 inp.addEventListener('input', debounce(sayHi)); // 防抖
 
@@ -24,3 +39,12 @@ function debounce(fn, time) {
         }, timer)
     }
 }
+const delayFun = debounce(sayHi, 200)
+delayFun(123);
+// var inp = document.getElementById('inp');
+// inp.addEventListener('input', function () {
+// 		delayFun(1)
+// 		// sayHi(222).then(()=>{
+// 		// 		console.log('then')
+// 		// })
+// }); // 防抖

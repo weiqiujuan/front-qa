@@ -108,6 +108,143 @@
 // }
 // countString('aaaabbbbbbbbbbbbbbccccddfgh')
 
+// console.log('script start');
+// async function async1(){
+//     console.log('async1')
+//     await async2()
+//     console.log('async3')
+// }
+//
+// async function async2(){
+//     console.log('async2')
+// }
+//
+// setTimeout(function () {
+//     console.log('setTimeout');
+// }, 0);
+//
+// Promise.resolve(()=>{
+//     console.log('promise0')
+// }).then(function () {
+//     console.log('promise1');
+// }).then(function () {
+//     console.log('promise2');
+// });
+// async1()
+// console.log('script end');
+
+// function test() {
+//     let a = 1;
+//     new Promise((resolve, reject) => {
+//         resolve('resolvedata')
+//         // reject('testetets')
+//     }).then(data => {
+//         console.log(data)
+//         return data + '1'
+//     }).then(data => {
+//         console.log(data)
+//         return data + '2'
+//     }).finally(data => {
+//         console.log(data)
+//     }).catch(e => {
+//         console.log(e)
+//         return e
+//     })
+// }
+//
+// test()
+
+//
+// function deepClone(obj) {
+//     let result = typeof  obj.splice === "function" ? [] : {};// 申请一个新的空间
+//     if (obj && typeof obj === 'object') {
+//         for (let key in obj) {
+//             if (obj[key] && typeof obj[key] === 'object') {
+//                 result[key] = deepClone(obj[key]);//如果对象的属性值为object的时候，递归调用deepClone,即在吧某个值对象复制一份到新的对象的对应值中。
+//             } else {
+//                 result[key] = obj[key];//如果对象的属性值不为object的时候，直接复制参数对象的每一个键值到新的对象对应的键值对中。
+//             }
+//         }
+//         return result;
+//     }
+//     return obj;
+// }
+
+// 输出以下代码运行结果，为什么？如果希望每隔 1s 输出一个结果，应该如何改造？注意不可改动 square 方法
+// const list = [1, 2, 3]
+// const square = num => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve(num * num)
+//         }, 1000)
+//     })
+// }
+// let promise = Promise.resolve()
+//
+// async function test(i = 0) {
+//     if (i === list.length) return
+//     promise = promise.then(() => square(list[i])).then(data => {
+//         console.log(data)
+//     })
+//     test(i + 1)
+//     // for (let i of list){
+//     //     const res = await  square(i);
+//     //     console.log(res)
+//     // }
+//     // list.forEach(async x => {
+//     //     setTimeout(async () => {
+//     //         const res = await square(x)
+//     //         console.log(res)
+//     //     }, 1000 * x)
+//     // })
+//     // list.forEach(async x=> {
+//     //     const res = await square(x)
+//     //     console.log(res)
+//     // })
+// }
+//
+// test()
+
+
+// const addNum = (arr, n) => {
+//     let single;
+//     if (n % 2 === 0) {
+//         let num = arr.indexOf(n / 2)
+//         if (num !== -1) {
+//             single = num
+//         }
+//     }
+//     for (let i = 0; i < arr.length; i++) {
+//         if (i === single) {
+//             return single
+//         }
+//         let lastNum = n - arr[i];
+//         let index = arr.slice(i + 1).indexOf(lastNum)
+//         if (index !== -1) {
+//             return [i, arr.indexOf(lastNum)]
+//         }
+//     }
+// }
+// const main = addNum([2, 3, 4, 5, 1], 7)
+// console.log(main)
+
+
+// class LifeCycle {
+// 		constructor() {
+// 				this.args = Array.prototype.slice.call(arguments);
+// 		}
+//
+// 		begina(cb) {
+// 				cb();
+// 				console.log(this.args)
+// 		}
+//
+// }
+//
+// let lifeCycle = new LifeCycle('1111');
+// lifeCycle.begina(() => {
+// 		console.log('begina')
+// })
 
 // const dataTree = (data) => {
 //     let obj = {}
