@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本溢出</title>
+    <style type="text/css">
+        body {
+            --height: 1.2rem;
+            --lines: 2;
+            --linesHeight: calc(var(--height) * var(--lines));
+        }
+
+        .singleLineOverFlow {
+            width: 300px;
+            overflow: hidden;
+            word-break: break-all;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .moreLineOverFlow {
+            position: relative;
+            width: 300px;
+            line-height: var(--height);
+            height: var(--linesHeight);
+            overflow: hidden;
+        }
+
+        .moreLineOverFlow::before {
+            content: '...';
+            position: absolute;
+            right: 0;
+            top: calc(var(--linesHeight) - var(--height));
+        }
+    </style>
+</head>
+<body>
+<div class='singleLineOverFlow'>
+    我是单行文本我是单行文本我是单行文本我是单行文本我是单行文本我是单行文本
+</div>
+<div class='moreLineOverFlow'>
+    我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本
+</div>
+</body>
+</html>

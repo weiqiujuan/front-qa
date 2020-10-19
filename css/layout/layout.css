@@ -1,20 +1,45 @@
-.left, .right{
+/*.left, .right{*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*    background-color: blue;*/
+/*}*/
+/*.main{*/
+/*    height: 100px;*/
+/*    background-color: green;*/
+/*}*/
+* {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.left, .right {
     width: 100px;
-    height: 100px;
     background-color: blue;
 }
-.main{
-    height: 100px;
+
+.main {
     background-color: green;
 }
+
+.head {
+    height: 100px;
+    position: -webkit-sticky;
+    position: sticky;
+    top:0;
+    background: #67a3d9;
+}
+
 /*自身浮动*/
-.self-float .left{
+.self-float .left {
     float: left;
 }
-.self-float .right{
+
+.self-float .right {
     float: right;
 }
-.self-float .main{
+
+.self-float .main {
     margin: 0 100px;
 }
 
@@ -22,34 +47,41 @@
 .absolute-pos {
     position: relative;
 }
-.absolute-pos .left{
+
+.absolute-pos .left {
     position: absolute;
     left: 0;
     top: 0;
 }
-.absolute-pos .right{
+
+.absolute-pos .right {
     position: absolute;
     right: 0;
     top: 0;
 }
-.absolute-pos .main{
+
+.absolute-pos .main {
     margin: 0 100px;
 }
+
 /* 圣杯布局 */
-.holyGrail-pos{
+.holyGrail-pos {
     padding: 0 100px;
 }
-.holyGrail-pos .main{
+
+.holyGrail-pos .main {
     width: 100%;
     float: left;
 }
-.holyGrail-pos .left{
+
+.holyGrail-pos .left {
     float: left;
     margin-left: -100%;
     position: relative;
     right: 100px;
 }
-.holyGrail-pos .right{
+
+.holyGrail-pos .right {
     float: left;
     margin-left: -100px;
     position: relative;
@@ -57,27 +89,33 @@
 }
 
 /*margin负值*/
-.margin-negative .main{
+.margin-negative .main {
     width: 100%;
     float: left;
 }
+
 .margin-negative .main .content {
     margin: 0 100px;
 }
+
 .margin-negative .left {
     float: left;
     margin-left: -100%;
 }
+
 .margin-negative .right {
     float: left;
     margin-left: -100px;
 }
+
 /*flex布局*/
-.flex-container{
+.flex-container {
     display: -webkit-flex;
     display: flex;
+    height: 100%;
 }
-.flex-container .main{
+
+.flex-container .main {
     -webkit-flex: 1;
     flex: 1;
 }

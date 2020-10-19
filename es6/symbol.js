@@ -5,7 +5,7 @@ const s2 = Symbol('song');
 console.log(s1 === s2); // false: Symbol声明的变量不相等
 
 // 2.作为对象的key
-// for 循环无法便利symbol属性，但是可以使用 Reflect.ownKeys方法可以拿到所有的key属性
+// for 循环无法遍历symbol属性，但是可以使用 Reflect.ownKeys方法可以拿到所有的key属性
 const s12 = Symbol('song');
 let obj = {
     [s12]: 'song', // es6语法[] 可以将symbol的值作为属性
@@ -25,7 +25,7 @@ const s2 = Symbol.for('song');
 console.log(s1 === s2);
 
 // 可以去对原生js的操作进行修改，说白了就是可以更改原生js的行为
-// 重写instanceof默认行为（Symbol.hasInstance
+// 重写instanceof默认行为Symbol.hasInstance
 const instance = {
     [Symbol.hasInstance](value) {
         return 'a' in value

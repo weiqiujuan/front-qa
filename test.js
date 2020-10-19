@@ -148,39 +148,96 @@
 // }
 
 // 输出以下代码运行结果，为什么？如果希望每隔 1s 输出一个结果，应该如何改造？注意不可改动 square 方法
-const list = [1, 2, 3]
-const square = num => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(num * num)
-        }, 1000)
-    })
-}
-let promise = Promise.resolve()
+// const list = [1, 2, 3]
+// const square = num => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve(num * num)
+//         }, 1000)
+//     })
+// }
+// let promise = Promise.resolve()
+//
+// async function test(i = 0) {
+//     if (i === list.length) return
+//     promise = promise.then(() => square(list[i])).then(data => {
+//         console.log(data)
+//     })
+//     test(i + 1)
+//     // for (let i of list){
+//     //     const res = await  square(i);
+//     //     console.log(res)
+//     // }
+//     // list.forEach(async x => {
+//     //     setTimeout(async () => {
+//     //         const res = await square(x)
+//     //         console.log(res)
+//     //     }, 1000 * x)
+//     // })
+//     // list.forEach(async x=> {
+//     //     const res = await square(x)
+//     //     console.log(res)
+//     // })
+// }
+//
+// test()
 
-async function test(i = 0) {
-    if (i === list.length) return
-    promise = promise.then(() => square(list[i])).then(data => {
-        console.log(data)
-    })
-    test(i + 1)
-    // for (let i of list){
-    //     const res = await  square(i);
-    //     console.log(res)
-    // }
-    // list.forEach(async x => {
-    //     setTimeout(async () => {
-    //         const res = await square(x)
-    //         console.log(res)
-    //     }, 1000 * x)
-    // })
-    // list.forEach(async x=> {
-    //     const res = await square(x)
-    //     console.log(res)
-    // })
-}
 
-test()
+// const addNum = (arr, n) => {
+//     let single;
+//     if (n % 2 === 0) {
+//         let num = arr.indexOf(n / 2)
+//         if (num !== -1) {
+//             single = num
+//         }
+//     }
+//     for (let i = 0; i < arr.length; i++) {
+//         if (i === single) {
+//             return single
+//         }
+//         let lastNum = n - arr[i];
+//         let index = arr.slice(i + 1).indexOf(lastNum)
+//         if (index !== -1) {
+//             return [i, arr.indexOf(lastNum)]
+//         }
+//     }
+// }
+// const main = addNum([2, 3, 4, 5, 1], 7)
+// console.log(main)
+
+
+// class LifeCycle {
+// 		constructor() {
+// 				this.args = Array.prototype.slice.call(arguments);
+// 		}
+//
+// 		begina(cb) {
+// 				cb();
+// 				console.log(this.args)
+// 		}
+//
+// }
+//
+// let lifeCycle = new LifeCycle('1111');
+// lifeCycle.begina(() => {
+// 		console.log('begina')
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

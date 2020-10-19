@@ -11,7 +11,6 @@ const maxNum = (urls, maxNum) => {
             return index
         })
     })
-    //  没明白！
     return urls.reduce((res, cur) => {
         return res.then(() => {
             return Promise.race(promises)

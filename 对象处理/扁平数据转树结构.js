@@ -20,7 +20,6 @@ function buildTree(list) {
         }
 
     }
-    console.log(tree)
     return tree;
 }
 
