@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+<div>
+    <a data-href="/" href="#">/</a>
+    <a data-href="/about" href="#">/about</a>
+    <a data-href="/hello" href="#">/hello</a>
+    <div class="content"></div>
+</div>
+<script>
+	class Router {
+		constructor() {
+			this.routes = {};
+			this.currentUrl = '';
+			this.initListener();
+			this.initBindLink();
+		}
+
+		push(path, callback) {
+			this.routes[path] = callback
+		}
+
+		updateView(url) {
+			this.currentUrl = url;
+			this.routes[this.currentUrl] && this.routes[this.currentUrl]();
+			console.log(this.routes[this.currentUrl]());
+		}
+
+		initBindLink() {
+			const allLink = document.querySelectorAll('a[data-href]');
+			for (let i = 0, len = allLink.length; i < len; i++) {
+				const current = allLink[i];
+				current.addEventListener(
+					'click',
+					e => {
+						e.preventDefault();
+						const url = current.getAttribute('data-href');
+						history.pushState({}, null, url);
+						this.updateView(url);
+					},
+					false
+				);
+			}
+		}
+
+		initListener() {
+			window.addEventListener('popstate', () => this.updateView(window.location.pathname));
+			window.addEventListener('load', () => this.updateView('/'), false);
+		}
+	}
+
+	const router = new Router();
+	router.push('/', function () {
+		document.querySelector('.content').innerHTML = 'Home'
+	})
+	router.push('/hello', function () {
+		document.querySelector('.content').innerHTML = 'hello'
+	})
+	router.push('/about', function () {
+		document.querySelector('.content').innerHTML = 'about'
+	})
+</script>
+</body>
+
+</html>

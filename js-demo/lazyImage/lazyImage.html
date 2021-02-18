@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lazyImg</title>
+</head>
+<style type="text/css">
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container img {
+        width: 200px;
+        height: auto;
+    }
+</style>
+<body>
+<div>
+    <img data-src="https://video.tianyancha.com/686410834cb34564a44fb019922e5238/snapshots/normal/32F6CE6E-176A70AD23F-1668-5120-699-6740900001.jpg">
+    <img data-src="https://jindi-yqqf2.oss-cn-beijing.aliyuncs.com/e00b8f7e1499083fc0b22e191022e3a0.png">
+    <img data-src="https://jindi-yqqf2.oss-cn-beijing.aliyuncs.com/1c9a57299acaabfff19d03c56d991b5f.jpeg">
+    <img data-src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+    <img data-src="https://video.tianyancha.com/0ed6340918724de586be879783daa550/snapshots/normal/35FC8844-176F5A4427D-1668-5120-699-6740900002.jpg">
+    <img data-src="https://video.tianyancha.com/686410834cb34564a44fb019922e5238/snapshots/normal/32F6CE6E-176A70AD23F-1668-5120-699-6740900003.jpg">
+    <img data-src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+    <img data-src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+    <img data-src="https://video.tianyancha.com/686410834cb34564a44fb019922e5238/snapshots/normal/32F6CE6E-176A70AD23F-1668-5120-699-6740900004.jpg">
+    <img data-src="https://video.tianyancha.com/e140ee2644bd47328722d2f1be877b01/snapshots/normal/1C38E30E-1774158FE99-1668-5120-699-6740900001.jpg">
+    <img data-src="https://video.tianyancha.com/e140ee2644bd47328722d2f1be877b01/snapshots/normal/1C38E30E-1774158FE99-1668-5120-699-6740900002.jpg">
+    <img data-src="https://video.tianyancha.com/e140ee2644bd47328722d2f1be877b01/snapshots/normal/1C38E30E-1774158FE99-1668-5120-699-6740900003.jpg">
+    <img data-src="https://video.tianyancha.com/e140ee2644bd47328722d2f1be877b01/snapshots/normal/1C38E30E-1774158FE99-1668-5120-699-6740900004.jpg">
+    <img data-src="http://video.tianyanqifu.com/26e4e9b86e32492cba1fe5cdc362668d/snapshots/normal/1C553ABD-17761E5602B-1739-3004-199-1486200001.jpg">
+    <img data-src="http://video.tianyanqifu.com/26e4e9b86e32492cba1fe5cdc362668d/snapshots/normal/1C553ABD-17761E5602B-1739-3004-199-1486200002.jpg">
+    <img data-src="http://video.tianyanqifu.com/26e4e9b86e32492cba1fe5cdc362668d/snapshots/normal/1C553ABD-17761E5602B-1739-3004-199-1486200003.jpg">
+    <img data-src="http://video.tianyanqifu.com/26e4e9b86e32492cba1fe5cdc362668d/snapshots/normal/1C553ABD-17761E5602B-1739-3004-199-1486200004.jpg">
+</div>
+
+<script src="../img.js"></script>
+<script type="text/javascript">
+	const contain = document.getElementsByClassName('container')[0];
+	const frag = document.createDocumentFragment()
+	for (let i = 0; i < imgData.length; i++) {
+		let img = document.createElement('img');
+		img.setAttribute('data-src', imgData[i])
+		// img.setAttribute('src', imgData[i]);
+		frag.appendChild(img)
+	}
+	contain.appendChild(frag);
+
+	const imgs = document.querySelectorAll('img');
+
+	//用来判断bound.top<=clientHeight的函数，返回一个bool值
+	function isIn(el) {
+		const bound = el.getBoundingClientRect();
+		const clientHeight = window.innerHeight;
+		return bound.top <= clientHeight;
+	}
+	//检查图片是否在可视区内，如果不在，则加载
+	function check() {
+		Array.from(imgs).forEach(function(el){
+			if(isIn(el)){
+				loadImg(el);
+			}
+		})
+	}
+	function loadImg(el) {
+		if(!el.src){
+			el.src = el.dataset.src;
+		}
+	}
+	window.onload = window.onscroll = function () { //onscroll()在滚动条滚动的时候触发
+		check();
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>aspect-ratio</title>
+    <style type="text/css">
+        .container {
+            width: 200px;
+            height: 200px;
+        }
+
+        .contain {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            /*padding-top: 56.25%;*/
+            /* 16:9 Aspect Ratio */
+        }
+
+        .img {
+            position: absolute;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="contain">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+             alt=""
+             class="img">
+    </div>
+</div>
+
+</body>
+</html>

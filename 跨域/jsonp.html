@@ -111,7 +111,7 @@
         script.src = "http://unionsug.baidu.com/su?wd=" + encodeURI(obj.value.trim()) + '&p=3&cb=render';
         body.appendChild(script);
 
-        // img 跨域访问
+        // img.json 跨域访问
         data && data.forEach(item => {
             imgFun(item)
         })

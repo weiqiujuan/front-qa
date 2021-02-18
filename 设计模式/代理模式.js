@@ -29,7 +29,7 @@
 
 // 虚拟代理：
 var myImage = (function () {
-    var imgNode = document.createElement('img');
+    var imgNode = document.createElement('img.json');
     document.body.appendChild(imgNode);
     return function (src) {
         imgNode.src = src;

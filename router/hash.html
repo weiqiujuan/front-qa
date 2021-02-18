@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <a href="#/">/</a>
+    <a href="#/about">/about</a>
+    <a href="#/hello">/hello</a>
+    <div class="content"></div>
+</div>
+<script>
+	class Router {
+		constructor() {
+			this.routes = {};
+			this.currentUrl = '';
+			this.initListener();
+		}
+
+
+		push(path, callback) {
+			this.routes[path] = callback || function () {}
+		}
+
+		// 改变路由
+		updateView() {
+			this.currentUrl = location.hash.slice(1) || '/';
+			this.routes[this.currentUrl] && this.routes[this.currentUrl]();
+		}
+
+		initListener() {
+			window.addEventListener('load', this.updateView.bind(this), false)
+			window.addEventListener('hashchange', this.updateView.bind(this), false)
+		}
+	}
+
+	const router = new Router();
+	router.push('/', function () {
+		document.querySelector('.content').innerHTML = 'Home'
+	})
+	router.push('/hello', function () {
+		document.querySelector('.content').innerHTML = 'hello'
+	})
+	router.push('/about', function () {
+		document.querySelector('.content').innerHTML = 'about'
+	})
+</script>
+</body>
+</html>
