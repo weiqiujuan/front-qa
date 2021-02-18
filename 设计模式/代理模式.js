@@ -29,38 +29,38 @@
 
 // 虚拟代理：
 var myImage = (function () {
-    var imgNode = document.createElement('img.json');
-    document.body.appendChild(imgNode);
-    return function (src) {
-        imgNode.src = src;
-    }
+	var imgNode = document.createElement('img.json');
+	document.body.appendChild(imgNode);
+	return function (src) {
+		imgNode.src = src;
+	}
 })();
 var proxyImage = (function () {
-    var img = new Image;
-    img.onload = function () {
-        myImage(this.src);
-    }
-    return function (src) {
-        myImage('file:// /C:/Users/svenzeng/Desktop/loading.gif');
-        img.src = src;
-    }
+	var img = new Image;
+	img.onload = function () {
+		myImage(this.src);
+	}
+	return function (src) {
+		myImage('file:// /C:/Users/svenzeng/Desktop/loading.gif');
+		img.src = src;
+	}
 })();
 proxyImage('http://imgcache.qq.com/music/photo/k/000GGDys0yA0Nk.jpg');
 // 缓存上报
 const syncFile = (id) => {
-    console.log('开始同步文件的id:' + id)
+	console.log('开始同步文件的id:' + id)
 }
 const proxySyncFile = (function () {
-    let cache = [], timer;
-    return function (id) {
-        cache.push(id)
-        if (timer) return
-        timer = setTimeout(() => {
-            syncFile(cache.join(','))// 2秒后向本体发送需要同步的id集合
-            clearTimeout(timer)// 清空定时器
-            timer = null
-            cache.length = 0 //清空id集合
-        }, 2000)
-    }
+	let cache = [], timer;
+	return function (id) {
+		cache.push(id)
+		if (timer) return
+		timer = setTimeout(() => {
+			syncFile(cache.join(','))// 2秒后向本体发送需要同步的id集合
+			clearTimeout(timer)// 清空定时器
+			timer = null
+			cache.length = 0 //清空id集合
+		}, 2000)
+	}
 })()
 proxySyncFile(id)

@@ -3,14 +3,14 @@
 //思路： 用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象
 // 基础方法
 var Singleton = function (name) {
-    this.name = name;
-    this.instance = null; // 用此变量来标志当前是否已经为某个类创建过对象，
+	this.name = name;
+	this.instance = null; // 用此变量来标志当前是否已经为某个类创建过对象，
 };
 Singleton.getInstance = function (name) {
-    if (!this.instance) { //如果没有创建过，则创建
-        this.instance = new Singleton(name);
-    }
-    return this.instance; // 如果创建过。直接返回之前创建的对象
+	if (!this.instance) { //如果没有创建过，则创建
+		this.instance = new Singleton(name);
+	}
+	return this.instance; // 如果创建过。直接返回之前创建的对象
 };
 var a = Singleton.getInstance('sven1');
 var b = Singleton.getInstance('sven2');
@@ -21,12 +21,12 @@ var Signle = function () {
 
 }
 var proxySignle = (function () {
-    var instance;
-    return function () {
-        if (!instance) {
-            instance = new Signle()
-        }
-        return instance
-    }
+	var instance;
+	return function () {
+		if (!instance) {
+			instance = new Signle()
+		}
+		return instance
+	}
 })()
 const a = proxySignle()
