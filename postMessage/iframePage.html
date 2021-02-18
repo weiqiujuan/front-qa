@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>iframePage</title>
     <style type="text/css">
-        h1{
+        h1 {
             text-align: center;
         }
     </style>
@@ -12,15 +12,15 @@
 <body>
 <h1>我是iframe页面</h1>
 <script>
-    parent.postMessage({
-        msg: '我是iframe页面发来的信息'
-    },'*')
+	parent.postMessage({
+		msg: '我是iframe页面发来的信息'
+	}, '*')
 
-    function receiveMessage( event ) {
-        console.log('这是从index传过来的', event)
-    }
+	function receiveMessage(event) {
+		console.log('这是从index传过来的', event)
+	}
 
-    window.addEventListener('message', receiveMessage, false)
+	window.addEventListener('message', receiveMessage, false)
 </script>
 </body>
 </html>

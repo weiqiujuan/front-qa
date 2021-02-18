@@ -2,27 +2,27 @@
 // Object.seal()封闭一个对象，阻止添加任何属性，将现有属性标记为不可配置对于当前属性如果之前是可写的就可以改变
 // Object.freeze()冻结的对象中的现有属性值是不可变的。
 let obj = {
-    prop: function () {
-    },
-    foo: 'bar'
+	prop: function () {
+	},
+	foo: 'bar'
 }
 
 // 对象中属性信息的查询
-console.log(Object.getOwnPropertyDescriptor(obj,'foo'))// 可读
+console.log(Object.getOwnPropertyDescriptor(obj, 'foo'))// 可读
 Object.freeze(obj)
-obj.foo='modify'
+obj.foo = 'modify'
 console.log(obj)// 不改变
 // Object.seal(obj)
 // obj.foo='modify-bar' //改变
 // console.log(obj)
 
 // 将foo属性可配置中的可写规定为false
-Object.defineProperty(obj,'foo',{
-    writable:false
+Object.defineProperty(obj, 'foo', {
+	writable: false
 })
 // 将obj封闭
 Object.seal(obj)
-obj.foo='modify'
+obj.foo = 'modify'
 // 无法改变
 console.log(obj)
 
