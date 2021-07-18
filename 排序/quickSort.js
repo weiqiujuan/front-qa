@@ -2,8 +2,8 @@ function quickSort(arr) {
     if (arr.length < 2) {
         return arr
     }
-    var left = 0;
-    var right = arr.length - 1;
+    let left = 0;
+    let right = arr.length - 1;
     while (left < right) {
         while (arr[right] >= arr[0] && left < right) {
             right--;
@@ -11,7 +11,6 @@ function quickSort(arr) {
         while (arr[left] <= arr[0] && left < right) {
             left++
         }
-
         if (left === right) {
             let mid = arr[right]
             arr[right] = arr[0]

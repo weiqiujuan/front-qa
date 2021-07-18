@@ -18,30 +18,30 @@
 //     })
 // }
 const retry = async (fn, maxTime) => {
-    while (maxTime > 0) {
-        try {
-            const res = await fn()
-            console.log(res)
-            return
-        }catch (e) {
-            console.log('try again')
-            maxTime--
-        }
-    }
-    console.log('error: no more time, now reject')
+	while (maxTime > 0) {
+		try {
+			const res = await fn()
+			console.log(res)
+			return
+		} catch (e) {
+			console.log('try again')
+			maxTime--
+		}
+	}
+	console.log('error: no more time, now reject')
 }
 const cb = () => {
-    let num = Math.random() * 200 + 1
-    return new Promise((resolve, reject) => {
-        if (num % 2 !== 0) {
-            resolve(num)
-        } else {
-            reject(num)
-        }
-    })
+	let num = Math.random() * 200 + 1
+	return new Promise((resolve, reject) => {
+		if (num % 2 !== 0) {
+			resolve(num)
+		} else {
+			reject(num)
+		}
+	})
 }
 retry(cb, 3).then(res => {
-    console.log(res)
+	console.log(res)
 }).catch(err => {
-    console.log('失败', err)
+	console.log('失败', err)
 })

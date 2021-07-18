@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>锚点导航</title>
+    <style type="text/css">
+        // 偷懒的reset，不要模仿
+        body,
+        html,
+        h1,
+        h2 {
+            margin: 0
+        }
+
+        main {
+            padding-top: 64px;
+        }
+
+        h2 {
+            padding: 10px 20px;
+        }
+
+        img {
+            width: 550px;
+        }
+
+        .nav {
+            display: block;
+            background-color: #fff;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, .2);
+            color: #202425;
+            z-index: 10;
+            height: 60px;
+            width: 100%;
+            position: fixed;
+            padding: 0 20px;
+        }
+
+        .nav a {
+            display: inline-block;
+            height: 64px;
+            line-height: 64px;
+            margin-right: 2px
+        }
+
+        .actived {
+            color: red;
+        }
+
+        #content {
+            max-width: 1200px;
+            margin: auto;
+            font-size: 0;
+        }
+
+        #content img {
+            width: 400px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a class="actived" href="#title1">第一组图片</a>
+    <a href="#title2">第二组图片</a>
+    <a href="#title3">第三组图片</a>
+</nav>
+
+<main id="content">
+    <article id="title1" class="item">
+        <h2>第一组图片</h2>
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+             alt="">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+             alt="">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+             alt="">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+    </article>
+    <article id="title2" class="item">
+        <h2>第二组图片</h2>
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+             alt="">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+             alt="">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+             alt="">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+             alt="">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+    </article>
+    <article id="title3" class="item">
+        <h2>第三组图片</h2>
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+        <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png">
+    </article>
+</main>
+</body>
+<script type="application/javascript">
+
+	var $menu = $('.nav')
+	var menuList = $menu.find('a');
+
+	menuList.each(function () {
+		var $this = $(this);
+		$this.click(function (e) {
+			var id = $this.attr('href').replace(/#/g, '')
+			var top = $('#' + id).offset().top - 60;
+			$('html').animate({ scrollTop: top }, 1000)
+		})
+	})
+
+	// var contentList = $('#content').find('.item');
+    //
+	// $(window).scroll(function (e) {
+	// 	var top = $(document).scrollTop();
+	// 	var currentID = ''
+    //
+	// 	contentList.each(function () {
+	// 		var $this = $(this)
+	// 		var itemTop = $this.offset().top;
+    //
+	// 		if (top > itemTop - 300) {
+	// 			currentID = '#' + $this.attr('id');
+	// 		} else {
+	// 			return false
+	// 		}
+	// 	})
+    //
+    //
+	// 	var currentLink = $menu.find('.actived')
+	// 	if (currentID && currentLink.attr('href') !== currentID) {
+	// 		currentLink.removeClass('actived')
+    //
+	// 		$menu.find("[href='" + currentID + "']").addClass('actived')
+	// 	}
+	// })
+</script>
+</html>

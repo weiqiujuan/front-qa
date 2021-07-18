@@ -8,10 +8,11 @@ let event = {
 		this.clientList[key].push(fn); // 订阅的消息添加进消息缓存列表
 	},
 	trigger: function () {
-		var key = Array.prototype.shift.call(arguments),//取出消息类型
+		const key = Array.prototype.shift.call(arguments),//取出消息类型
 			fns = this.clientList[key];// 取出该消息对应的回调函数集合
 		if (!fns || fns.length === 0) return false
-		for (var i = 0, fn; fn = fns[i++];) {
+		let i = 0, fn;
+		for (; fn === fns[i++];) {
 			fn.apply(this, arguments); // (2) // arguments 是发布消息时附送的参数
 		}
 	},

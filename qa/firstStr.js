@@ -36,7 +36,7 @@
 // }
 
 
-var a = sum();
+// var a = sum();
 let add = ()=>{
     let args = [];
     let a = 1;

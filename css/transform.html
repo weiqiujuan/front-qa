@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .swing {
+            margin: 0 auto;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid red;
+            animation: move 3s 0s infinite;
+            -webkit-animation: move 3s 0s infinite;
+            transform-origin: center;
+            -webkit-transform-origin: center;
+        }
+
+        @keyframes move {
+            0%,
+            65% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            70% {
+                -webkit-transform: rotate(20deg);
+                transform: rotate(20deg);
+            }
+            75% {
+                -webkit-transform: rotate(-20deg);
+                transform: rotate(-20deg);
+            }
+            80% {
+                -webkit-transform: rotate(20deg);
+                transform: rotate(20deg);
+            }
+            85% {
+                -webkit-transform: rotate(-20deg);
+                transform: rotate(-20deg);
+            }
+            90% {
+                -webkit-transform: rotate(20deg);
+                transform: rotate(20deg);
+            }
+            95% {
+                -webkit-transform: rotate(-20deg);
+                transform: rotate(-20deg);
+            }
+            100% {
+                -webkit-transform: rotate(20deg);
+                transform: rotate(20deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div class="swing"></div>
+</div>
+</body>
+</html>

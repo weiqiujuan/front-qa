@@ -1,0 +1,110 @@
+node {
+    def deployServerList = [
+        'test': [
+            'baseDir': '/home/jindi/data/www/mini-program', // 存储打包好的项目文件地址
+            'remoteDir': 'mini-program',
+            'server': [ 'new-fe-测试服务器' ] // 文件名
+        ],
+        'pre': [
+            'baseDir': '/home/work/data/www/mini-program',
+            'remoteDir': 'mini-program',
+            'server': [ 'new-fe-预发服务器' ]
+        ],
+        'prod': [
+             'baseDir': '/data/www/s2b/mobile',
+             'remoteDir': 'mobile',
+             'server': [ 'fe-prod-172.26.123.77', 'fe-prod-172.26.123.73', 'fe-prod-172.26.123.70', 'fe-prod-172.26.123.72', 'fe-prod-172.26.123.75' ]
+        ]
+    ]
+
+    def lastCommitInfos = [: ]
+
+    def envString = env.buildEnv == 'test' ? '测试' : env.buildEnv == 'pre' ? '预发' : '线上'
+
+    parameters {
+        gitParameter branch: '', branchFilter: '.*', defaultValue: 'origin/dev', description: '选择源代码拉取分支或标签', listSize: '0', name: 'branch', quickFilterEnabled: true, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH_TAG'
+    }
+
+    try {
+        stage('切换分支') {
+            checkout([
+                $class: 'GitSCM',
+                branches: [[name: "${params.branch}"]],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [],
+                submoduleCfg: [],
+                userRemoteConfigs: [
+                    [
+                        credentialsId: '', // 仓库有效证书id
+                        url: '' // 仓库地址
+                    ]
+                ]
+            ])
+
+            lastCommitInfos.author = sh script: 'git show -s --format=%an', returnStdout: true
+            lastCommitInfos.hash = sh script: 'git show -s --format=%H', returnStdout: true
+            lastCommitInfos.content = sh script: 'git show -s --format=%s', returnStdout: true
+        }
+
+        stage('安装依赖') {
+            sh script: 'node -v'
+            // switch npm registry to private mirror
+            sh script: 'npm install --unsafe-perm=true --allow-root --registry=http://172.26.122.254:9999/'
+        }
+
+        stage('构建') {
+            // build package for selected env
+            sh returnStdout: true, script: "npm run build:h5:${env.buildEnv}"
+        }
+
+        stage('打包') {
+            // zip package
+            sh returnStdout: true, script: 'mkdir -p ./out && tar -czf out/dist.tar.gz dist/*'
+        }
+
+        stage("部署到${envString}环境") {
+            def serverList = deployServerList[env.buildEnv]
+            def command = env.buildEnv == 'prod' ? "cd ${serverList.baseDir} && rm -rf dist && tar -zxvf dist.tar.gz && rm -rf dist_mobile && mv dist dist_mobile && rm -r dist.tar.gz" : "cd ${serverList.baseDir} && rm -rf dist && tar -zxvf dist.tar.gz && rm -r dist.tar.gz"
+
+            serverList.server.each{
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: it,
+                            transfers: [
+                                sshTransfer(
+                                    cleanRemote: false,
+                                    excludes: '',
+                                    execCommand: command,
+                                    execTimeout: 120000,
+                                    flatten: false,
+                                    makeEmptyDirs: false,
+                                    noDefaultExcludes: false,
+                                    patternSeparator: '[, ]+',
+                                    remoteDirectory: serverList.remoteDir,
+                                    remoteDirectorySDF: false,
+                                    removePrefix: 'out',
+                                    sourceFiles: 'out/*'
+                                )
+                            ],
+                            usePromotionTimestamp: false,
+                            useWorkspaceInPromotion: false,
+                            verbose: false
+                        )
+                    ]
+                )
+            }
+
+            def hash = lastCommitInfos.hash.trim().replaceAll("\\s*|\t|\r|\n", "")
+            def author = lastCommitInfos.author.trim().replaceAll("\\s*|\t|\r|\n", "")
+            def content = lastCommitInfos.content.trim().replaceAll("\\s*|\t|\r|\n", "")
+
+            wrap([$class: 'BuildUser']) {
+                def user = env.BUILD_USER_ID
+                sh script: "curl -H 'Content-Type: application/json' -X POST -d '{\"msg_type\": \"post\", \"content\": { \"post\": { \"zh_cn\": { \"title\": \"${JOB_NAME} 部署成功\", \"content\": [ [ { \"tag\": \"text\", \"text\": \"部署人: ${user}\" } ], [ { \"tag\": \"text\", \"text\": \"分支(tag): ${params.branch}\" } ], [ { \"tag\": \"text\", \"text\": \"Last Commit Hash: ${hash}\" } ], [ { \"tag\": \"text\", \"text\": \"Last Commit Author: ${author}\" } ], [ { \"tag\": \"text\", \"text\": \"Last Commit Content: ${content}\" } ] ] } } } }' 'https://open.feishu.cn/open-apis/bot/v2/hook/018a7a09-7582-4fdb-b281-e1821c3c3df2'"
+            }
+        }
+    } catch(err) {
+        sh script: "curl -H 'Content-Type: application/json' -X POST -d '{\"msg_type\": \"text\", \"content\": { \"text\": \"${JOB_NAME} 部署失败，请及时查看\" } }' 'https://open.feishu.cn/open-apis/bot/v2/hook/018a7a09-7582-4fdb-b281-e1821c3c3df2'"
+    }
+}

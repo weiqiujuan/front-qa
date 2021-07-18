@@ -29,3 +29,13 @@ Function.prototype.myapply = function (context, arr) {
 
 const arrTest = [2, 3, 4, 51, 6, 22]
 console.log(Math.max.myapply(null, arrTest))
+
+
+const myApply = (ctx, args)=> {
+    ctx = ctx || window
+    const fn = Symbol()
+    ctx[fn] = this
+    const res = ctx[fn](...args)
+    delete ctx[fn]
+    return res
+}

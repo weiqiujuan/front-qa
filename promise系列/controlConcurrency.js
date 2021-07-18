@@ -24,9 +24,9 @@ const controlConcurrency = (listArr ,limit, asyncHandle) => {
  */
 const asyncHandle = (item) => {
     return new Promise((resolve, reject) => {
-        count++;
+        // count++;
         setTimeout(() => {
-            console.log(item, '当前并发量', count--);
+            // console.log(item, '当前并发量', count--);
             // if (item > 4) reject('error happen')
             resolve()
         }, Math.random() * 2000)

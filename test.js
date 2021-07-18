@@ -277,29 +277,81 @@
 // console.log(dataTree(list))
 
 
-function findPrimeNumber(start, end) {
-    var result = [];
-    var flag;
-    for (var i = start; i < end + 1; i++) {
-        flag = true;
-        if (i === 1) {
-            flag = false;
-        }
-        for (var j = 2; j < i; j++) {
-            if (i % j === 0) {
-                flag = false;
-                break;
-            }
-        }
-        if (flag == true) {
-            result.push(i);
-        }
-    }
-    return result;
-}
+// function findPrimeNumber(start, end) {
+//     var result = [];
+//     var flag;
+//     for (var i = start; i < end + 1; i++) {
+//         flag = true;
+//         if (i === 1) {
+//             flag = false;
+//         }
+//         for (var j = 2; j < i; j++) {
+//             if (i % j === 0) {
+//                 flag = false;
+//                 break;
+//             }
+//         }
+//         if (flag == true) {
+//             result.push(i);
+//         }
+//     }
+//     return result;
+// }
 
-var result = findPrimeNumber(1, 100);
-console.log(...result)
+// var result = findPrimeNumber(1, 100);
+// console.log(...result)
+
+// for (var i = 0; i < 5; i++) {
+//     setTimeout(function() {
+//         console.log(new Date, i);
+//     }, 1000)
+// }
+// console.log(new Date, i);
+// 2021-05-10T09:58:57.004Z 5
+// 2021-05-10T09:58:58.008Z 5
+// 2021-05-10T09:58:58.013Z 5
+// 2021-05-10T09:58:58.014Z 5
+// 2021-05-10T09:58:58.014Z 5
+// 2021-05-10T09:58:58.015Z 5
+
+// for (var i = 0; i < 5; i++) {
+// 	setTimeout((i) => {
+// 		console.log(i);
+// 	}, 1000, i)
+// }
+// console.log(i); // 5,0,1,2,3,4
+
+// for (let i = 0; i < 5; i++) {
+// 	setTimeout((i) => {
+// 		console.log(i); // 0,1,2,3,4
+// 	}, 1000, i)
+// }
+// console.log(i); // undefined
+
+// for (var i = 0; i< 5; i++){
+// 	((i) => {
+// 		setTimeout(() => {
+// 			console.log(i);
+// 		}, 1000)
+// 	})(i)
+// }
+
+// var b = 2;
+// function foo(str,a){
+// 	eval(str);
+// 	console.log(a, b)
+// }
+// foo('var b=3', 1)
+
+// (function a() {
+// 	console.log(a);
+// 	return a
+// }())
+// (function a(){console.log(a); return a}())()()
+
+
+
+
 
 
 

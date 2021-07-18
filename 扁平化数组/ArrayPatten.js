@@ -36,3 +36,19 @@ function flatten(arr) {
     return arr;
 }
 console.log(flatten(arr))
+
+function flatternStack(arr) {
+    const stack = [...arr];
+    let res = [];
+    while (stack.length) {
+        const next = stack.shift();
+        if (Array.isArray(next)) {
+            stack.push(...next);
+        } else {
+            res.push(next);
+        }
+    }
+    return res;
+}
+
+console.log(flatternStack([1,2,3,[3,[2,9]]]))
